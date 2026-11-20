@@ -1,0 +1,121 @@
+﻿<Page x:Class="Student_Attendance_Management_System.Teacher.Pages.ViewAttendanceRecord"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Student_Attendance_Management_System.Teacher.Pages"
+      mc:Ignorable="d"
+      xmlns:fa="http://schemas.fontawesome.io/icons/" xmlns:models="clr-namespace:Student_Attendance_Management_System.ViewModel" d:DataContext="{d:DesignInstance Type=models:StudentVM}" 
+      d:DesignHeight="590" d:DesignWidth="1080"
+      Title="ViewAttendanceRecord">
+
+    <Grid Background="White" Margin="20 10 20 20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <!--Top Ribbon-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Grid Height="24" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Button Template="{DynamicResource TopRibbonGray}"
+                        FontSize="12"
+                        Foreground="{DynamicResource DefaultGray}"
+                        FontWeight="Medium"
+                        Background="Transparent"
+                        Content="View Class Information" RenderTransformOrigin="0.71,0.68" />
+                <fa:ImageAwesome Grid.Column="2" 
+                                 Icon="ChevronRight" 
+                                 Width="8" Height="8"
+                                 Foreground="{DynamicResource DefaultGray}"/>
+                <Button Template="{DynamicResource TopRibbonGray}" 
+                        Grid.Column="4"
+                        FontSize="12"
+                        Foreground="{DynamicResource DefaultPrimary}"
+                        FontWeight="Medium"
+                        Background="Transparent"
+                        Content="Attendance Record" />
+            </Grid>
+
+            <Button x:Name="generatePdfBtn"
+                    Foreground="White"
+                    FontSize="13"
+                    Click="GeneratePdfBtn_Click"
+                    Visibility="Collapsed"
+                    FontWeight="Medium"
+                    Padding="15 0"
+                    Grid.Column="2"
+                    Content="Generate PDF"
+                    Background="{DynamicResource DefaultPrimary}"
+                    Height="50"
+                    Template="{DynamicResource RemovePrimaryTrigger}"
+                    />
+        </Grid>
+        <DataGrid Style="{DynamicResource DefaultDataGrid}"
+                  Grid.Row="2"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  x:Name="DataGridAttendance"
+                  RowStyle="{DynamicResource LastestRowStyle}"
+                  CellStyle="{DynamicResource DefaultDataGridCellStyle}"
+                  ColumnHeaderStyle="{DynamicResource DefaultDataGridColumnHeaderStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Student No." Width="*" Binding="{Binding Student_number}"/>
+                <DataGridTextColumn Header="Student Name" Width="2*" Binding="{Binding Full_name}"/>
+                <DataGridTextColumn Header="Gender" Width="*" Binding="{Binding Gender}"/>
+                <DataGridTextColumn Header="Age" Width="*" Binding="{Binding Age}"/>
+                <DataGridTemplateColumn Header="Status" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button 
+                                    Content="{Binding Student_status}" 
+                                    Tag="{Binding}"
+                                    Click="UpdateStatus_Click"
+                                    Padding="15 0"
+                                    Height="50"
+                                    x:Name="updateStatsBtn"
+                                    Template="{DynamicResource RemovePrimaryTrigger}"
+                                    Foreground="White"
+                                    IsEnabled="{Binding CanUpdate}"
+                                    FontWeight="Medium">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="Gray"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Student_status}" Value="Pending">
+                                                <Setter Property="Background" Value="#FFA500"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Student_status}" Value="Present">
+                                                <Setter Property="Background" Value="#00C951"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Student_status}" Value="Absent">
+                                                <Setter Property="Background" Value="#FB2C36"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Student_status}" Value="Late">
+                                                <Setter Property="Background" Value="#8f8e8e"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

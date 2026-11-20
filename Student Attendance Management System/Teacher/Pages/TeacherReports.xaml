@@ -1,0 +1,138 @@
+﻿<Page x:Class="Student_Attendance_Management_System.Teacher.Pages.TeacherReports"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Student_Attendance_Management_System.Teacher.Pages" xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:chart="clr-namespace:Student_Attendance_Management_System.Teacher.Components" xmlns:viewmodel="clr-namespace:Student_Attendance_Management_System.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ClassesVM}"
+      mc:Ignorable="d" 
+      d:DesignHeight="590" d:DesignWidth="1080"
+      Title="TeacherReports">
+
+    <Grid Margin="20 10 20 20"
+          Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <!--Summary of Reports-->
+        <!--Top Report Summary-->
+        <Grid x:Name="summaryReport" />
+        <!--Graphs-->
+        <Border CornerRadius="10" Grid.Row="2" Margin="50 0">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="5" Opacity="0.15" ShadowDepth="0" />
+            </Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <!--Pie Chart Overall Student Performance-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Students Overall Performance"
+                               Foreground="{DynamicResource DefaultDarkGray}"
+                               FontSize="15"
+                               TextAlignment="Center"
+                               FontWeight="Medium" />
+                    <Grid Grid.Row="2" Height="220" x:Name="pieBox" />
+                </Grid>
+                <!--Left Section-->
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Gender Based Performance"
+                               Foreground="{DynamicResource DefaultDarkGray}"
+                                FontSize="15"
+                                TextAlignment="Center"
+                                FontWeight="Medium" />
+                    <Grid x:Name="genderPerformance" Grid.Row="2" />
+                </Grid>
+            </Grid>
+        </Border>
+        <!--Teacher classes-->
+        <Grid Grid.Row="4" MinHeight="200">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Class Lists"
+                           FontSize="15"
+                           Height="24"
+                           Foreground="{DynamicResource DefaultDarkGray}"
+                           FontWeight="Medium"
+                           />
+                <Button Content="Export Report to PDF" 
+                        Padding="15 0"
+                        Grid.Column="2"
+                        Height="50"
+                        Template="{DynamicResource RemovePrimaryTrigger}"
+                        Background="#00C951"
+                        Foreground="White"
+                        HorizontalAlignment="Right"
+                        Click="ExportToPdfBtn_Click"/>
+            </Grid>
+            <DataGrid Style="{DynamicResource DefaultDataGrid}"
+                      x:Name="dataGridList"
+                      Grid.Row="2"
+                      ItemsSource="{Binding TeacherAllClasses}"
+                      RowStyle="{DynamicResource DefaultDataGridRowStyle}"
+                      CellStyle="{DynamicResource DefaultDataGridCellStyle}"
+                      ColumnHeaderStyle="{DynamicResource DefaultDataGridColumnHeaderStyle}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Class ID" Width="80" Binding="{Binding Class_id}"/>
+                    <DataGridTextColumn Header="Subject Name" Width="*" Binding="{Binding Subject_name}"/>
+                    <DataGridTextColumn Header="Course" Width="*" Binding="{Binding Course}"/>
+                    <DataGridTextColumn Header="Year &amp; Section" Width="*" Binding="{Binding Year_section}"/>
+                    <DataGridTextColumn Header="Scheduled Day" Width="*" Binding="{Binding Schedule_day}"/>
+                    <DataGridTextColumn Header="Scheduled Time" Width="*" Binding="{Binding Schedule_time}"/>
+                    <DataGridTemplateColumn Header="View" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="viewBtn"
+                                        Foreground="White"
+                                        Background="#00C951"
+                                        Padding="15 0"
+                                        Tag="{Binding}"
+                                        Height="50"
+                                        Click="ViewBtn_Click"
+                                        Template="{DynamicResource RemovePrimaryTrigger}">
+                                    <fa:ImageAwesome Icon="Eye" 
+                                                     Width="20"
+                                                     Foreground="White"
+                                                     Height="20" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <TextBlock Text="No Assigned Class" 
+                       Foreground="{DynamicResource DefaultDarkGray}"
+                       FontSize="13"
+                       Visibility="Collapsed"
+                       x:Name="assignedClassText"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Page>

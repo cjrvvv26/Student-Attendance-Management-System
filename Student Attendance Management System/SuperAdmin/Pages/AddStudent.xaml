@@ -1,0 +1,276 @@
+﻿<Page x:Class="Student_Attendance_Management_System.SuperAdmin.Pages.AddStudent"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:local="clr-namespace:Student_Attendance_Management_System.SuperAdmin.Pages" xmlns:viewmodel="clr-namespace:Student_Attendance_Management_System.ViewModel" 
+      mc:Ignorable="d" 
+      d:DesignHeight="590" d:DesignWidth="1080"
+      d:DataContext="{d:DesignInstance Type=viewmodel:StudentVM}"
+      Title="AddStudent">
+
+    <Grid Margin="20 10 20 20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <!--Top Ribbon-->
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Button Template="{DynamicResource TopRibbonGray}"
+                    FontSize="12"
+                    Foreground="{DynamicResource DefaultGray}"
+                    FontWeight="Medium"
+                    Background="Transparent"
+                    Content="Users" Click="Users_Click" RenderTransformOrigin="0.71,0.68" />
+            <fa:ImageAwesome Grid.Column="2" Icon="ChevronRight"  Width="8" Height="8"
+                             Foreground="{DynamicResource DefaultGray}"/>
+            <Button Template="{DynamicResource TopRibbonGray}" 
+                    Grid.Column="4"
+                    FontSize="12"
+                    Foreground="{DynamicResource DefaultPrimary}"
+                    FontWeight="Medium"
+                    Background="Transparent"
+                    Content="Add student" />
+        </Grid>
+        <!--fIRST ROW-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="First Name" 
+                           Foreground="{DynamicResource DefaultGray}"
+                           FontWeight="Medium"
+                           FontSize="13"/>
+                <TextBox Template="{DynamicResource TextBoxInput}"
+                            Foreground="{DynamicResource DefaultDarkGray}"
+                            Grid.Row="1"
+                            Padding="5 10"
+                            x:Name="fnameBox"
+                         Background="white"
+                            TextWrapping="NoWrap"
+                            FontSize="14" FontWeight="Medium"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Middle Name"
+                           Foreground="{DynamicResource DefaultGray}"
+                            FontWeight="Medium"
+                            FontSize="13"/>
+                <TextBox Template="{DynamicResource TextBoxInput}"
+                        Foreground="{DynamicResource DefaultDarkGray}"
+                        Grid.Row="1"
+                        Padding="5 10"
+                            x:Name="mnameBox"
+                         Background="white"
+                        TextWrapping="NoWrap"
+                        FontSize="14" FontWeight="Medium"/>
+            </Grid>
+            <Grid Grid.Column="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Last Name"
+                           Foreground="{DynamicResource DefaultGray}"
+                             FontWeight="Medium"
+                             FontSize="13"/>
+                <TextBox Grid.Row="1" 
+                         Padding="5 10"
+                         FontWeight="Medium"
+                            x:Name="lnameBox"
+                         Template="{DynamicResource TextBoxInput}"
+                         Background="white"
+                         Foreground="{DynamicResource DefaultDarkGray}"
+                         FontSize="14"/>
+            </Grid>
+        </Grid>
+        <!--SEC ROW-->
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Email"
+               Foreground="{DynamicResource DefaultGray}"
+                 FontWeight="Medium"
+                 FontSize="13"/>
+                <TextBox Grid.Row="1" 
+                         Padding="5 10"
+                            x:Name="email"
+                         FontWeight="Medium"
+                         Template="{DynamicResource TextBoxInput}"
+                         Background="White"
+                         Foreground="{DynamicResource DefaultDarkGray}"
+                         FontSize="14"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Birth Date"
+                           FontSize="13"
+                           FontWeight="Medium"
+                           Foreground="{DynamicResource DefaultGray}"/>
+                <DatePicker Style="{DynamicResource InputDateTime}" VerticalAlignment="Center"
+                            Background="{DynamicResource DefaultLightGray}"
+                            SelectedDate="{Binding Birth_date, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                         FontWeight="Medium"
+                            Grid.Row="1">
+                    <DatePicker.Resources>
+                        <Style TargetType="Border" >
+                            <Setter Property="BorderThickness" Value="0" />
+                        </Style>
+                        <Style TargetType="DatePickerTextBox">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="IsReadOnly" Value="True"/>
+                        </Style>
+                    </DatePicker.Resources>
+                </DatePicker>
+            </Grid>
+            <Grid Grid.Column="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Age"
+                           Foreground="{DynamicResource DefaultGray}"
+                           FontWeight="Medium"
+                           FontSize="13"/>
+                <TextBlock FontSize="14"
+                           Grid.Row="1"
+                           Foreground="{DynamicResource DefaultDarkGray}"
+                           VerticalAlignment="Center" FontWeight="Medium"
+                           Text="{Binding Student_age, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+            </Grid>
+        </Grid>
+        <!--Third ROW-->
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Gender"
+                           Foreground="{DynamicResource DefaultGray}"
+                           FontWeight="Medium"
+                           FontSize="13"/>
+                <Grid Grid.Row="1" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <RadioButton GroupName="gender"
+                                 FontSize="14"
+                                 FontWeight="Medium"
+                                 Foreground="{DynamicResource DefaultDarkGray}"
+                                 VerticalContentAlignment="Center"
+                                 Content="Male"
+                                 x:Name="maleRadio"/>
+                    <RadioButton Grid.Column="1"
+                                 FontSize="14"
+                                 FontWeight="Medium"
+                                 Foreground="{DynamicResource DefaultDarkGray}"
+                                 x:Name="femaleRadio"
+                                 VerticalContentAlignment="Center"
+                                 GroupName="gender" Content="Female" />
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Course"
+               FontSize="13"
+                           Foreground="{DynamicResource DefaultGray}"
+                           FontWeight="Medium"/>
+                <ComboBox Template="{DynamicResource InputComboBox}" SelectedIndex="0"
+                          VerticalAlignment="Center"
+                          Height="45"
+                          VerticalContentAlignment="Center"
+                          FontSize="14"
+                          FontWeight="Medium"
+                          x:Name="ComboCourse"
+                          SelectionChanged="ComboCourse_SelectionChanged"
+                          Grid.Row="1"/>
+            </Grid>
+
+            <Grid Grid.Column="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Year &amp; Section"
+                           FontSize="13"
+                           FontWeight="Medium"
+                           Foreground="{DynamicResource DefaultGray}"/>
+                <ComboBox Template="{DynamicResource InputComboBox}"    
+                          SelectedIndex="0" VerticalAlignment="Center"
+                          Height="45"
+                          VerticalContentAlignment="Center"
+                          FontSize="14"
+                          FontWeight="Medium"
+                          x:Name="ComboSection"
+                          Grid.Row="1"/>
+            </Grid>
+        </Grid>
+
+        <!--Fourth Row-->
+        <Button Template="{DynamicResource RemovePrimaryTrigger}"
+                Grid.Row="8"
+                Height="50"
+                Background="{DynamicResource DefaultPrimary}"
+                Foreground="White"
+                FontWeight="Medium"
+                FontSize="14"
+                HorizontalAlignment="Right"
+                Padding="50 0"
+                Click="AddStudent_Click"
+                Content="Create Student Account" />
+    </Grid>
+</Page>

@@ -1,0 +1,399 @@
+﻿<Page x:Class="Student_Attendance_Management_System.Teacher.Pages.ViewClassStatus"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Student_Attendance_Management_System.Teacher.Pages"
+      mc:Ignorable="d" 
+      xmlns:fa="http://schemas.fontawesome.io/icons/" xmlns:models="clr-namespace:Student_Attendance_Management_System.ViewModel" d:DataContext="{d:DesignInstance Type=models:AttendanceVM}"
+      d:DesignHeight="590" d:DesignWidth="1080"
+      Title="ViewClassStatus">
+    <Grid Background="White" Margin="20 10 20 20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <!--Top Ribbon-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Button Template="{DynamicResource TopRibbonGray}"
+                    FontSize="12"
+                    Click="ViewAllClass_Click"
+                    Foreground="{DynamicResource DefaultGray}"
+                    FontWeight="Medium"
+                    Background="Transparent"
+                    Content="View Classes" RenderTransformOrigin="0.71,0.68" />
+            <fa:ImageAwesome Grid.Column="2" 
+                         Icon="ChevronRight" 
+                         Width="8" Height="8"
+                         Foreground="{DynamicResource DefaultGray}"/>
+            <Button Template="{DynamicResource TopRibbonGray}" 
+                    Grid.Column="4"
+                    FontSize="12"
+                    Foreground="{DynamicResource DefaultPrimary}"
+                    FontWeight="Medium"
+                    Background="Transparent"
+                    Content="View Class Information" />
+        </Grid>
+        <!--Content-->
+        <ScrollViewer Grid.Row="2"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Hidden">
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <!--1st row Course & Section Information-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Course &amp; Section Information"
+                               FontSize="15"
+                               x:Name="firstSubTitle"
+                               Margin="0 0 0 10"
+                               FontWeight="Medium"
+                               Foreground="{DynamicResource DefaultPrimary}" />
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock FontSize="13"
+                                       FontWeight="Medium"
+                                       Foreground="{DynamicResource DefaultGray}"
+                                       Text="Course" />
+
+                            <TextBlock FontWeight="Medium"
+                                       Grid.Row="1"
+                                       Text="{Binding ClassData.Course}"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       Padding="5 10"
+                                       Foreground="{DynamicResource DefaultDarkGray}"/>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock FontSize="13"
+                                       FontWeight="Medium"
+                                       Foreground="{DynamicResource DefaultGray}"
+                                       Text="Year &amp; Section" />
+
+                            <TextBlock FontWeight="Medium"
+                                       Grid.Row="1"
+                                       Text="{Binding ClassData.Year_section}"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       Padding="5 10"
+                                       Foreground="{DynamicResource DefaultDarkGray}"/>
+                        </Grid>
+                        <Grid Grid.Column="4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock FontSize="13"
+                                       FontWeight="Medium"
+                                       Foreground="{DynamicResource DefaultGray}"
+                                       Text="Class Semester" />
+
+                            <TextBlock
+                                   FontWeight="Medium"
+                                   Grid.Row="1"
+                                   Text="{Binding ClassData.Class_semester}"
+                                   FontSize="14"
+                                   VerticalAlignment="Center"
+                                   Padding="5 10"
+                                   Foreground="{DynamicResource DefaultDarkGray}"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock FontSize="13"
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource DefaultGray}"
+                                   Text="Class Term" />
+
+                        <TextBlock FontWeight="Medium"
+                                   Grid.Row="1"
+                                   Text="{Binding ClassData.Class_term}"
+                                   FontSize="14"
+                                   VerticalAlignment="Center"
+                                   Padding="5 10"
+                                   Foreground="{DynamicResource DefaultDarkGray}"/>
+                    </Grid>
+                </Grid>
+                <!--2nd Row Subject Information-->
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Subject Information"
+                               FontSize="15"
+                               Margin="0 0 0 10"
+                               FontWeight="Medium"
+                               Foreground="{DynamicResource DefaultPrimary}" />
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock FontSize="13"
+                                       FontWeight="Medium"
+                                       Foreground="{DynamicResource DefaultGray}"
+                                       Text="Subject Code" />
+
+                            <TextBlock FontWeight="Medium"
+                                       Grid.Row="1"
+                                       Text="{Binding ClassData.Subject_code}"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       Padding="5 10"
+                                       Foreground="{DynamicResource DefaultDarkGray}"/>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock FontSize="13"
+                                       FontWeight="Medium"
+                                       Foreground="{DynamicResource DefaultGray}"
+                                       Text="Subject Name" />
+
+                            <TextBlock FontWeight="Medium"
+                                       Grid.Row="1"
+                                       Text="{Binding ClassData.Subject_name}"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       Padding="5 10"
+                                       Foreground="{DynamicResource DefaultDarkGray}"/>
+                        </Grid>
+                        <Grid Grid.Column="4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock FontSize="13"
+                                       FontWeight="Medium"
+                                       Foreground="{DynamicResource DefaultGray}"
+                                       Text="Units" />
+
+                            <TextBlock FontWeight="Medium"
+                                       Grid.Row="1"
+                                       Text="{Binding ClassData.Subject_unit}"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       Padding="5 10"
+                                       Foreground="{DynamicResource DefaultDarkGray}"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <!--3rd Row Class Schedule-->
+                <Grid Grid.Row="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Class Schedule"
+                               FontSize="15"
+                               Margin="0 0 0 10"
+                               FontWeight="Medium"
+                               Foreground="{DynamicResource DefaultPrimary}" />
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock FontSize="13"
+                                       FontWeight="Medium"
+                                       Foreground="{DynamicResource DefaultGray}"
+                                       Text="Schedule Day" />
+
+                            <TextBlock FontWeight="Medium"
+                                       Grid.Row="1"
+                                       Text="{Binding ClassData.Schedule_day}"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       Padding="5 10"
+                                       Foreground="{DynamicResource DefaultDarkGray}"/>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock FontSize="13"
+                                       FontWeight="Medium"
+                                       Foreground="{DynamicResource DefaultGray}"
+                                       Text="Schedule Time" />
+
+                            <TextBlock FontWeight="Medium"
+                                       Grid.Row="1"
+                                       Text="{Binding ClassData.Schedule_time}"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       Padding="5 10"
+                                       Foreground="{DynamicResource DefaultDarkGray}"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <!--4th Attendance Table-->
+                <Grid Grid.Row="6"
+                          MinHeight="300">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid VerticalAlignment="Center">
+                        <TextBlock Text="Attendance Record"
+                                   FontSize="15"
+                                   Height="24"
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource DefaultPrimary}" />
+
+                        <Grid Grid.Row="2"
+                                HorizontalAlignment="Right">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button Foreground="White" 
+                                    Height="50"
+                                    Padding="15 0"
+                                    x:Name="createAttendanceBtn"
+                                    Click="CreateAttendance_Click"
+                                    Template="{DynamicResource RemovePrimaryTrigger}"
+                                    Background="{DynamicResource DefaultPrimary}"
+                                    Content="Create Attendance"/>
+
+                            <Button Foreground="{DynamicResource DefaultDarkGray}" 
+                                    Height="50"
+                                    Grid.Column="2"
+                                    Padding="15 0"
+                                    Click="ViewOverallAttendance_Click"
+                                    Template="{DynamicResource RemovePrimaryTrigger}"
+                                    Background="{DynamicResource DefaultLightGray}"
+                                    Content="Overall Record"/>
+
+                            <ComboBox x:Name="termRecordFilter"
+                                      Padding="15"
+                                      Height="50"
+                                      Template="{DynamicResource InputComboBox}"
+                                      FontSize="13"
+                                      SelectionChanged="termRecordFilter_SelectionChanged"
+                                      FontWeight="Medium"
+                                      Background="White"
+                                      Grid.Column="4"
+                                      Foreground="{DynamicResource DefaultDarkGray}" />
+                        </Grid>
+                    </Grid>
+                    
+                    <TextBlock Text="No Record"
+                               Grid.Row="4"
+                               FontSize="13"
+                               Margin="0 80 0 0"
+                               Visibility="Collapsed"
+                               x:Name="noRecordText"
+                               FontWeight="Medium"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource DefaultGray}" />
+
+                    <DataGrid Grid.Row="4"
+                              x:Name="recordDataTable"
+                              ItemsSource="{Binding GetAllSavedRecords}"
+                              Style="{DynamicResource DefaultDataGrid}"
+                              CellStyle="{DynamicResource DefaultDataGridCellStyle}"
+                              ColumnHeaderStyle="{DynamicResource DefaultDataGridColumnHeaderStyle}"
+                              RowStyle="{DynamicResource LastestRowStyle}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Total Present" Width="*" Binding="{Binding Total_present}"/>
+                            <DataGridTextColumn Header="Total Late" Width="*" Binding="{Binding Total_late}"/>
+                            <DataGridTextColumn Header="Total Absent" Width="*" Binding="{Binding Total_absent}"/>
+                            <DataGridTextColumn Header="Total Students" Width="*" Binding="{Binding Total_students}"/>
+                            <DataGridTextColumn Header="Class Term" Width="*" Binding="{Binding Class_term}"/>
+                            <DataGridTextColumn Header="Recorded At" Width="*" Binding="{Binding Date}"/>
+                            <DataGridTemplateColumn Header="Operations" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="5" />
+                                                <ColumnDefinition Width="auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Button Click="ViewRecord_Click" Height="45" 
+                                                    Padding="15 0"         
+                                                    Template="{DynamicResource RemovePrimaryTrigger}"
+                                                    Background="#00C951"
+                                                    Tag="{Binding}">
+                                                <fa:ImageAwesome Icon="Pencil" Width="20"
+                                                                 Height="20"
+                                                                 Foreground="White"/>
+                                            </Button>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

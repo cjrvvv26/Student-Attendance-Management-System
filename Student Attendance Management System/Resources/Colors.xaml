@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="BlackColor">#15191C</Color>
+    <Color x:Key="WhiteColor">#CACACA</Color>
+    <Color x:Key="PrimaryColor">#0B2E33</Color>
+    <Color x:Key="SecondaryColor">#4F7C82</Color>
+    <Color x:Key="OptionColor">#93B1B5</Color>
+    <Color x:Key="BlueColorText">#1F2667</Color>
+    <Color x:Key="DarkBlueColorText">#002D62</Color>
+    <Color x:Key="AccentBlueColorText">#F0F8FF</Color>
+
+    <SolidColorBrush x:Key="BlueText" Color="#1F2667"/>
+    <SolidColorBrush x:Key="DarkBlueText" Color="#002D62"/>
+    <SolidColorBrush x:Key="GrayText" Color="#9DA3AC"/>
+    <SolidColorBrush x:Key="AccentColor" Color="#F0F8FF"/>
+
+    <SolidColorBrush x:Key="WhiteBackgroundColor" Color="{DynamicResource WhiteColor}"/>
+    <SolidColorBrush x:Key="BlackTextColor" Color="{DynamicResource BlackColor}"/>
+
+
+    <SolidColorBrush x:Key="DefaultGray" Color="#8f8e8e"/>
+    <SolidColorBrush x:Key="DefaultLightGray" Color="#ececec"/>
+    <SolidColorBrush x:Key="DefaultDarkGray" Color="#404040"/>
+    <SolidColorBrush x:Key="DefaultPrimary" Color="#ba36db"/>
+    <SolidColorBrush x:Key="DefaultPrimaryBackground" Color="#F3F1FD"/>
+</ResourceDictionary>

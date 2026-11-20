@@ -1,0 +1,198 @@
+﻿<Page x:Class="Student_Attendance_Management_System.SuperAdmin.Pages.ViewSectionInfo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Student_Attendance_Management_System.SuperAdmin.Pages" xmlns:fa="http://schemas.fontawesome.io/icons/" xmlns:viewmodel="clr-namespace:Student_Attendance_Management_System.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:SectionVM}"
+      mc:Ignorable="d" 
+      d:DesignHeight="590" d:DesignWidth="1080"
+      Title="ViewSectionInfo">
+
+    <Grid Background="White" Margin="20 10 20 20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--Top Ribbon-->
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Button Template="{DynamicResource TopRibbonGray}"
+                        FontSize="12"
+                        Foreground="{DynamicResource DefaultGray}"
+                        FontWeight="Medium"
+                        Background="Transparent"
+                        Content="View Course &amp; Sections" Click="ViewAllCourseSections_Click"/>
+                <fa:ImageAwesome Grid.Column="2" Icon="ChevronRight"  Width="8" Height="8"
+                                 Foreground="{DynamicResource DefaultGray}"/>
+                <Button Template="{DynamicResource TopRibbonGray}" 
+                        Grid.Column="4"
+                        FontSize="12"
+                        Foreground="{DynamicResource DefaultPrimary}"
+                        FontWeight="Medium"
+                        Background="Transparent"
+                        Content="Section Information" />
+            </Grid>
+
+            <Button Height="auto"
+                    x:Name="updateBtn"
+                    Click="ChangeToUpdate_Click"
+                    Grid.Column="2"
+                    Background="Transparent"
+                    Template="{DynamicResource RemovePrimaryTrigger}"
+                    Foreground="White">
+                <fa:ImageAwesome Icon="Pencil" 
+                             Height="20"
+                             Width="20"
+                             Foreground="{DynamicResource DefaultGray}"/>
+            </Button>
+        </Grid>
+        <!--Content-->
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Course"
+                               Foreground="{DynamicResource DefaultGray}"
+                               FontSize="13"
+                               FontWeight="Medium" />
+
+                    <TextBlock Grid.Row="1"
+                               Foreground="{DynamicResource DefaultDarkGray}"
+                               FontSize="14"
+                               Padding="5 10"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"
+                               FontWeight="Medium"
+                               Text="{Binding Course}"
+                               x:Name="courseText"/>
+                    <TextBox x:Name="courseBox"
+                             Template="{DynamicResource TextBoxInput}"
+                             Padding="5 10"
+                             Grid.Row="1"
+                             TextWrapping="NoWrap"
+                             Background="{DynamicResource DefaultLightGray}"
+                             Visibility="Collapsed"
+                             Foreground="{DynamicResource DefaultDarkGray}"
+                             FontWeight="Medium"
+                             FontSize="14" />
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Year Level"
+                               Foreground="{DynamicResource DefaultGray}"
+                               FontSize="13"
+                               FontWeight="Medium" />
+
+                    <TextBlock Grid.Row="1"
+                               Foreground="{DynamicResource DefaultDarkGray}"
+                               FontSize="14"
+                               Padding="5 10"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"
+                               FontWeight="Medium"
+                               Text="{Binding Year_level}"
+                               x:Name="yearText"/>
+                    <TextBox x:Name="yearBox"
+                             Padding="5 10"
+                             Background="{DynamicResource DefaultLightGray}"
+                             VerticalContentAlignment="Center"
+                             Grid.Row="1"
+                             Template="{DynamicResource TextBoxInput}"
+                             TextWrapping="NoWrap"
+                             Visibility="Collapsed"
+                             Foreground="{DynamicResource DefaultDarkGray}"
+                             FontWeight="Medium"
+                             FontSize="14" />
+                </Grid>
+                <Grid Grid.Column="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Section"
+                               Foreground="{DynamicResource DefaultGray}"
+                               FontSize="13"
+                               FontWeight="Medium" />
+
+                    <TextBlock Grid.Row="1"
+                               Foreground="{DynamicResource DefaultDarkGray}"
+                               FontSize="14"
+                               FontWeight="Medium"
+                               Padding="5 10"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"
+                               Text="{Binding Section}"
+                               x:Name="sectionText"/>
+                    <TextBox x:Name="sectionBox"
+                             Padding="5 10"
+                             Background="{DynamicResource DefaultLightGray}"
+                             Grid.Row="1"
+                             Template="{DynamicResource TextBoxInput}"
+                             TextWrapping="NoWrap"
+                             Visibility="Collapsed"
+                             Foreground="{DynamicResource DefaultDarkGray}"
+                             FontWeight="Medium"
+                             FontSize="14" />
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" x:Name="forUpdateBox" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Button Content="Proceed Update"
+                        Foreground="White"
+                        Height="50"
+                        Background="{DynamicResource DefaultPrimary}"
+                        Template="{DynamicResource RemovePrimaryTrigger}"
+                        Padding="15 0"
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Click="ProceedUpdate_Click" />
+
+                <Button Content="Cancel"
+                        Grid.Column="2"
+                        Height="50"
+                        Foreground="{DynamicResource DefaultGray}"
+                        Background="Transparent"
+                        Template="{DynamicResource RemovePrimaryTrigger}"
+                        Padding="15 0"
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Click="CancelUpdate_Click" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

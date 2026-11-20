@@ -1,0 +1,84 @@
+﻿<Page x:Class="Student_Attendance_Management_System.SuperAdmin.Pages.AuditLogs"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:local="clr-namespace:Student_Attendance_Management_System.SuperAdmin.Pages" xmlns:viewmodel="clr-namespace:Student_Attendance_Management_System.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AuditLogsVM}"
+      mc:Ignorable="d" 
+      d:DesignHeight="590" d:DesignWidth="1080"
+      Title="AuditLogs">
+
+    <Grid Background="White"  Margin="20 10 20 20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="topRibbonBtns" Margin="0 0 0 30" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button Template="{DynamicResource RemovePrimaryTrigger}"
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Padding="15 0"
+                    Height="50"
+                    Content="Export as PDF"
+                    x:Name="exportBtn"
+                    Background="{DynamicResource DefaultPrimary}"
+                    Click="PrintToPDF_Click"
+                    Foreground="White"/>
+
+            <Button Template="{DynamicResource RemovePrimaryTrigger}"
+                    FontSize="13"
+                    Grid.Column="2"
+                    FontWeight="Medium"
+                    Padding="15 0"
+                    Height="50"
+                    x:Name="deleteRecordBtn"
+                    Content="Delete Selected Record"
+                    Click="DeleteAll_Click"
+                    Background="#FB2C36"
+                    Foreground="White"/>
+        </Grid>
+        <DataGrid RowStyle="{DynamicResource DefaultLogRow}" Style="{DynamicResource DefaultDataGrid}"
+                  x:Name="recordLogs"
+                  Grid.Row="1"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ItemsSource="{Binding Logs}"
+                  SelectionMode="Extended"
+                  CellStyle="{DynamicResource DefaultDataGridCellStyle}"
+                  ColumnHeaderStyle="{DynamicResource DefaultDataGridColumnHeaderStyle}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.Header>
+                        <CheckBox Style="{DynamicResource DefaultCheckBoxStyle}" x:Name="SelectAllCheckBox"
+                                  Checked="SelectAllCheckBox_Checked"
+                                  Unchecked="SelectAllCheckBox_Unchecked"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox Tag="{Binding}"
+                                      Checked="SelectedItem_Click"
+                                      IsChecked="{Binding CheckBoxChecked, Mode=TwoWay}"
+                                      Unchecked="SelectedItem_Unchecked"
+                                      Style="{DynamicResource DefaultCheckBoxStyle}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="User No." Width="*" Binding="{Binding User_no}"/>
+                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding User_name}"/>
+                <DataGridTextColumn Header="Role" Width="*" Binding="{Binding Role}"/>
+                <DataGridTextColumn Header="Affected Entity" Width="*" Binding="{Binding Affected_entity}"/>
+                <DataGridTextColumn Header="Action" Width="*" Binding="{Binding Action}"/>
+                <DataGridTextColumn Header="Action Type" Width="*" Binding="{Binding Action_type}"/>
+                <DataGridTextColumn Header="Timestamp" Width="*" Binding="{Binding Created_at}"/>
+                <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Status}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

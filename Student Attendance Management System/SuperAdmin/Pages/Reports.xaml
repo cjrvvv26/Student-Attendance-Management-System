@@ -1,0 +1,154 @@
+﻿<Page x:Class="Student_Attendance_Management_System.SuperAdmin.Pages.Reports"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Student_Attendance_Management_System.SuperAdmin.Pages"
+      mc:Ignorable="d" 
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:chart="clr-namespace:Student_Attendance_Management_System.SuperAdmin.Components"
+      d:DesignHeight="590" d:DesignWidth="1080"
+      Title="Reports">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Hidden">
+        <Grid  Margin="20 10 20 20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <!--Top Report Summary-->
+            <chart:OverallSummary />
+
+            <!--Mid Section-->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <!--Overall Monthly Attendance Status-->
+                <Border CornerRadius="10"
+                Background="White"
+                Height="280">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="5" Opacity="0.15" ShadowDepth="0" />
+                    </Border.Effect>
+                    <Grid Margin="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Courses Gender Status"
+                           FontSize="15"
+                           FontWeight="Medium"
+                           Foreground="{DynamicResource DefaultDarkGray}"/>
+                        <Grid Grid.Row="2">
+                            <chart:ClassesStatus />
+                        </Grid>
+                    </Grid>
+                </Border>
+                <!--Overall Student Performance-->
+                <Border CornerRadius="10" 
+                Grid.Column="2"
+                Background="white" 
+                Height="280" 
+                Width="300">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="5" Opacity="0.15" ShadowDepth="0" />
+                    </Border.Effect>
+                    <Grid Margin="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Overall Student Performance"
+                           FontSize="15"
+                           HorizontalAlignment="Center"
+                           FontWeight="Medium"
+                           Foreground="{DynamicResource DefaultDarkGray}"
+                           />
+                        <Grid Grid.Row="2">
+                            <chart:OverallPerformance />
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+            <!--Bottom Section-->
+            <Border Grid.Row="4" CornerRadius="10"  Background="White" Height="500">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Opacity="0.15" ShadowDepth="0" />
+                </Border.Effect>
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <!--Header-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Status of Classes"
+                               FontSize="15"
+                               FontWeight="Medium"
+                               VerticalAlignment="Center"
+                               Foreground="{DynamicResource DefaultDarkGray}" />
+
+                        <Grid Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="Export as PDF"
+                                    FontSize="13"
+                                    Click="ExportPDFClassStatus_Click"
+                                    FontWeight="Medium"
+                                    Foreground="White"
+                                    Background="#FB2C36" 
+                                    Height="45"
+                                    Padding="10 0"
+                                    Template="{DynamicResource RemovePrimaryTrigger}"/>
+                            <!--Courses-->
+                            <ComboBox Grid.Column="2" Height="45" Padding="15 0" VerticalContentAlignment="Center" x:Name="courseCombo" SelectionChanged="courseCombo_SelectionChanged" Template="{DynamicResource InputComboBox}"/>
+                            <!--Year & Section-->
+                            <ComboBox Grid.Column="4" Height="45" Padding="15 0" VerticalContentAlignment="Center" x:Name="sectionCombo" SelectionChanged="sectionCombo_SelectionChanged" Template="{DynamicResource InputComboBox}"/>
+                            <!--School Term-->
+                            <ComboBox Grid.Column="6" Height="45" Padding="15 0" VerticalContentAlignment="Center" x:Name="termCombo" SelectionChanged="termCombo_SelectionChanged" Template="{DynamicResource InputComboBox}"/>
+                        </Grid>
+                    </Grid>
+                    <!--Records of Classes-->
+                    <DataGrid Style="{DynamicResource DefaultDataGrid}"
+                              Grid.Row="2"
+                              ColumnHeaderStyle="{DynamicResource DefaultDataGridColumnHeaderStyle}"
+                              CellStyle="{DynamicResource DefaultDataGridCellStyle}"
+                              RowStyle="{DynamicResource DefaultLogRow}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Subject Code" Width="auto"/>
+                            <DataGridTextColumn Header="Subject Name" Width="*"/>
+                            <DataGridTextColumn Header="Professor" Width="*"/>
+                            <DataGridTextColumn Header="Course" Width="*"/>
+                            <DataGridTextColumn Header="Section" Width="*"/>
+                            <DataGridTextColumn Header="Total Present" Width="*"/>
+                            <DataGridTextColumn Header="Total Absent" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>

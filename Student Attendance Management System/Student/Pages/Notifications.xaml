@@ -1,0 +1,157 @@
+﻿<Page x:Class="Student_Attendance_Management_System.Student.Pages.Notifications"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Student_Attendance_Management_System.Student.Pages" 
+      xmlns:viewmodel="clr-namespace:Student_Attendance_Management_System.ViewModel"
+      d:DataContext="{d:DesignInstance Type=viewmodel:NotificationVM}"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      d:DesignHeight="590" d:DesignWidth="1080"
+      Title="Notifications">
+
+
+    <Grid Background="White" Margin="20 10 20 20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Button Content="All"
+                Height="30"
+                Template="{DynamicResource TopRibbonGray}"
+                Background="Transparent"
+                Foreground="{DynamicResource DefaultPrimary}"
+                FontSize="13"
+                x:Name="all"
+                Click="all_Click"
+                FontWeight="Medium"
+                Padding="10 0"/>
+            <Button Content="Read"
+                Height="30"
+                x:Name="read"
+                Grid.Column="2"
+                Template="{DynamicResource TopRibbonGray}"
+                Background="Transparent"
+                FontSize="13"
+                FontWeight="Medium"
+                Click="read_Click"
+                Padding="10 0"
+                Foreground="{DynamicResource DefaultGray}"/>
+            <Button Content="Unread"
+                Height="30"
+                Grid.Column="4"
+                x:Name="unread"
+                Click="unread_Click"  
+                Template="{DynamicResource TopRibbonGray}"
+                Background="Transparent"
+                FontSize="13"
+                FontWeight="Medium"
+                Padding="10 0"
+                Foreground="{DynamicResource DefaultGray}"/>
+        </Grid>
+        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled"
+                  VerticalScrollBarVisibility="Hidden">
+            <ItemsControl ItemsSource="{Binding Notifications}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border CornerRadius="10"
+                        Padding="10"
+                        MouseLeftButtonDown="notifBorder_MouseLeftButtonDown"
+                        Tag="{Binding}"
+                        x:Name="notifBorder">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <!--Profile-->
+                                <Border CornerRadius="5" Height="45" Width="45"
+                                x:Name="defaultProfileBorder"
+                                Background="{DynamicResource DefaultLightGray}">
+                                    <fa:ImageAwesome Icon="User"
+                                             Width="25" Height="25"
+                                             Foreground="{DynamicResource DefaultGray}"/>
+                                </Border>
+                                <!--Message Details-->
+                                <Grid Grid.Column="2">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="5" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid VerticalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Title}"
+                                   FontSize="14"
+                                           x:Name="titleText"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource DefaultPrimary}"/>
+                                        <TextBlock Grid.Column="2" Foreground="{DynamicResource DefaultGray}"
+                                           x:Name="Role"
+                                   FontWeight="Bold"
+                                   TextWrapping="NoWrap"
+                                   TextTrimming="CharacterEllipsis"
+                                   Margin="0 2"
+                                   FontSize="10">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="[ {0} ]">
+                                                    <Binding Path="Triggered_by" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </Grid>
+                                    <TextBlock Text="{Binding Message}"
+                                       Foreground="{DynamicResource DefaultGray}"
+                                       x:Name="messageText"
+                                       FontSize="13"
+                                       Grid.Row="2"
+                                       FontWeight="Medium"/>
+                                </Grid>
+                                <!--Message action-->
+                                <Button Grid.Column="4" Template="{DynamicResource RemovePrimaryTrigger}"
+                                    Click="trashBtn_Click"
+                                    Tag="{Binding}"
+                                x:Name="trashBtn"
+                            Height="35" Width="35"
+                            Background="#FB2C36">
+                                    <fa:ImageAwesome Icon="Trash" x:Name="trashIcon" Foreground="White" Height="18"
+                                         Width="18"/>
+                                </Button>
+                            </Grid>
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Value="Read">
+                                <Setter TargetName="titleText" Property="Foreground" Value="{DynamicResource DefaultGray}" />
+                            </DataTrigger>
+                            <Trigger SourceName="notifBorder" Property="IsMouseOver" Value="True">
+                                <Setter TargetName="notifBorder" Property="Background" Value="{DynamicResource DefaultPrimary}" />
+                                <Setter TargetName="titleText" Property="Foreground" Value="White"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter TargetName="Role" Property="Foreground" Value="White"/>
+                                <Setter TargetName="messageText" Property="Foreground" Value="White"/>
+                                <Setter TargetName="defaultProfileBorder" Property="Background" Value="White"/>
+                            </Trigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Page>

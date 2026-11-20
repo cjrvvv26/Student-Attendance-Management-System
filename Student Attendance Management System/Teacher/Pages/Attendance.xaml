@@ -1,0 +1,67 @@
+﻿<Page x:Class="Student_Attendance_Management_System.Teacher.Pages.Attendance"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Student_Attendance_Management_System.Teacher.Pages" xmlns:fa="http://schemas.fontawesome.io/icons/" xmlns:viewmodel="clr-namespace:Student_Attendance_Management_System.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:StudentVM}"
+      mc:Ignorable="d" 
+      d:DesignHeight="590" d:DesignWidth="1080"
+      Title="Attendance">
+
+    <Grid Margin="20 10 20 20"
+          Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions> 
+        <!--Attendance Details-->
+        <Grid>
+            <TextBlock Text="REMINDER: 3 Absents = DROP OUT &amp; 6 Lates = 1 Absent" 
+                       Foreground="#FB2C36"
+                       FontSize="13"
+                       FontWeight="Medium"/>
+
+            <Button x:Name="CreateAttendanceBtn" 
+                    Grid.Row="4"
+                    Height="50"
+                    Click="CreateAttendanceBtn_Click"
+                    Padding="15 0"
+                    HorizontalAlignment="Right"
+                    Content="Create Record"
+                    Background="{DynamicResource DefaultPrimary}"
+                    Foreground="White"
+                    Template="{DynamicResource RemovePrimaryTrigger}"/>
+        </Grid>
+        <!--Lists of students-->
+        <DataGrid Style="{DynamicResource DefaultDataGrid}"
+                  Grid.Row="2"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  ItemsSource="{Binding EnrolledStudents}"
+                  RowStyle="{DynamicResource LastestRowStyle}"
+                  CellStyle="{DynamicResource DefaultDataGridCellStyle}"
+                  ColumnHeaderStyle="{DynamicResource DefaultDataGridColumnHeaderStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Student No." Width="*" Binding="{Binding Student_number}"/>
+                <DataGridTextColumn Header="Student Name" Width="2*" Binding="{Binding Full_name}"/>
+                <DataGridTextColumn Header="Gender" Width="*" Binding="{Binding Gender}"/>
+                <DataGridTextColumn Header="Age" Width="*" Binding="{Binding Age}"/>
+                <DataGridTemplateColumn Header="Operations" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="UpdateStatus_Click" Height="45" 
+                                    Padding="15 0"
+                                    x:Name="studentStatusBtn"
+                                    Foreground="White"
+                                    Content="{Binding Student_status}"
+                                    Template="{DynamicResource RemovePrimaryTrigger}"
+                                    Background="#FFA500"
+                                    Tag="{Binding}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

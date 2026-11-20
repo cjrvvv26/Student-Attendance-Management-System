@@ -1,0 +1,108 @@
+﻿<Window x:Class="Student_Attendance_Management_System.Teacher.TeacherLayout"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Student_Attendance_Management_System.Teacher"
+        xmlns:fa="http://schemas.fontawesome.io/icons/" 
+        xmlns:models="clr-namespace:Student_Attendance_Management_System.Models" d:DataContext="{d:DesignInstance Type=models:TeacherModel}"
+        mc:Ignorable="d"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        Title="TeacherLayout" Height="720" Width="1280">
+    <Border CornerRadius="10" Background="White">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <!--Left Sec-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="PresenTrack" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <Grid Grid.Row="2" Margin="0 0 0 20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Button Click="Dashboard_Click" Content="Dashboard"/>
+                    <Button Click="Profile_Click" Grid.Row="1" Content="Profile"/>
+                    <Button Click="Class_Click" Grid.Row="2" Content="Class"/>
+                    <Button Click="Notifications_Click" Grid.Row="3" Content="Notification"/>
+                    <Button Click="Reports_Click" Grid.Row="4" Content="Reports"/>
+                    <Button Grid.Row="6" Click="LogOut_Click" Content="Logout"/>
+                </Grid>
+            </Grid>
+            <!--Right sec-->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+               <!--Header-->
+                <Grid Margin="20 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <!--For notif bell-->
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="10"/>
+                            <!--for teacher profile-->
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="150"/>
+                            </Grid.ColumnDefinitions>
+                            <Ellipse Height="45" Width="45" x:Name="profilePicBox"/>
+                            <Border x:Name="defaultProfileBox"
+                                    Visibility="Visible"
+                                    CornerRadius="10" Background="Transparent">
+                                <fa:ImageAwesome Icon="UserCircle" 
+                                                 Visibility="Collapsed"
+                                                 Foreground="{DynamicResource DefaultGray}"
+                                                 Width="45" Height="45"/>
+                            </Border>
+                            <Grid Grid.Column="2" VerticalAlignment="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="{Binding Full_name}"
+                                           TextTrimming="CharacterEllipsis"
+                                           TextWrapping="NoWrap"
+                                           FontWeight="Bold"
+                                           Foreground="{DynamicResource DefaultDarkGray}"
+                                           FontSize="14"/>
+                                <TextBlock Grid.Row="1" Text="{Binding Role}"
+                                           FontWeight="Medium"
+                                           Foreground="{DynamicResource DefaultGray}"
+                                           FontSize="12"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <!--Content Section-->
+                <Frame Grid.Row="2" 
+                       x:Name="TeacherFrame"
+                       NavigationUIVisibility="Hidden" />
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

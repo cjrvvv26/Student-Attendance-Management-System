@@ -1,0 +1,112 @@
+﻿<Page x:Class="Student_Attendance_Management_System.SuperAdmin.Pages.AllUsers"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:local="clr-namespace:Student_Attendance_Management_System.SuperAdmin.Pages" xmlns:viewmodel="clr-namespace:Student_Attendance_Management_System.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:UsersVM}"
+      mc:Ignorable="d"
+      d:DesignHeight="490" d:DesignWidth="1080"
+      Title="AllUsers">
+
+    <Grid>
+        <DataGrid Margin="0 20 0 0" x:Name="DisplayAllUsers" RowStyle="{DynamicResource DefaultDataGridRowStyle}" ColumnHeaderStyle="{DynamicResource DefaultDataGridColumnHeaderStyle}" CellStyle="{DynamicResource DefaultDataGridCellStyle}" Style="{DynamicResource DefaultDataGrid}" ItemsSource="{Binding Users}" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled" Height="550">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="#" Binding="{Binding User_PrimaryID}" Width="auto">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" >
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="User No" Binding="{Binding User_no}" Width="100">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" >
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="First Name" Binding="{Binding First_name}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" >
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Last Name" Binding="{Binding Last_name}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" >
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" >
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Role" Binding="{Binding Role}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" >
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Header="Operations" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Button Click="UpdateData_Click" Height="45" Padding="10 0" Template="{DynamicResource RemovePrimaryTrigger}"
+                                        Background="#00C951"
+                                        Tag="{Binding}">
+                                    <Grid VerticalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="5" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <fa:ImageAwesome Icon="AddressCardOutline" Width="20"
+                                                         Height="20"
+                                                         Foreground="White"/>
+                                        <TextBlock Text="View"
+                                                   Grid.Column="2"
+                                                   FontWeight="Medium"
+                                                   Foreground="White"
+                                                   FontSize="12"/>
+                                    </Grid>
+                                </Button>
+                                <Button Click="DeleteData_Click" Grid.Column="2" Padding="10 0" Tag="{Binding}"
+                                        Template="{DynamicResource RemovePrimaryTrigger}"
+                                        Background="#FB2C36"
+                                        Height="45">
+                                    <Grid VerticalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="5" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <fa:ImageAwesome Icon="TrashOutline" Width="20"
+                                                         Height="20"
+                                                         Foreground="White"/>
+                                        <TextBlock  Text="Delete"
+                                                    Grid.Column="2"
+                                                    FontWeight="Medium"
+                                                    Foreground="White"
+                                                    FontSize="12"/>
+                                    </Grid>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
